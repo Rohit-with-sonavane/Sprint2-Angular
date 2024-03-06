@@ -1,0 +1,127 @@
+<div class="flex justify-center h-screen items-center overflow-hidden">
+  <div class="container">
+  
+    <div class="cover" [ngClass]="{'rotate-active': isRegister}">
+      <div class="front">
+        <img
+          class=""
+          src="https://imgs.search.brave.com/ZE85grWEDNYz3BEnb7idsoK_v69fflMApNEs_-BO-gc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/MTZwNW01cnB1YnA1/MS5qcGc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9OTE1ZDRlOWI0/YmZmNjViYTZkMmMy/NmU0OWRlYzlkN2Ji/YWQ2OTdmNw"
+          alt=""
+        />
+        <div class="text">
+          <span class="text-1"
+            >Share, Savor, and Create: Your Recipe Haven Awaits!</span
+          >
+          <span class="text-2 text-xs">Let's get connected</span>
+        </div>
+      </div>
+      <div class="back">
+        <img
+          src="https://imgs.search.brave.com/GHY0-zSNtJZU5aDoVJaEHqOGe8n5WPHtD6sco2kaSWU/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2ZmL2Jj/LzYxL2ZmYmM2MThj/MWFiNmYyMzQ4MmM5/OWI3MzQ3MmIyZGM5/LmpwZw"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="forms h-full">
+      <div class="form-content h-full">
+        <div class="login-form ">
+            
+            <h1 class="text-lg font-bold text-center pb-8">Signup</h1>
+            <form [formGroup]="registrationForm" (ngSubmit)="handleRegister()" class="example-form">
+                <mat-form-field class="w-full">
+                  <mat-label>Full Name</mat-label>
+                  <input matInput 
+                  formControlName="fullName" placeholder="Enter your full name"
+                 
+                  >
+
+                  @if(registrationForm?.get('fullName')?.hasError('required')){
+                    <mat-error >Full Name is required</mat-error>
+                  }
+                  
+                </mat-form-field>
+              
+                <mat-form-field class="w-full">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput formControlName="email" placeholder="Enter your email">
+                  @if(registrationForm?.get('email')?.hasError('required')){
+                    <mat-error>Email is required</mat-error>
+                  }
+                  @if(registrationForm?.get("email")?.hasError('email')){
+                    <mat-error>Please enter a valid email address</mat-error>
+                  }
+                  
+                </mat-form-field>
+              
+                <mat-form-field class="w-full">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password" formControlName="password" placeholder="Enter your password">
+                  @if(registrationForm?.get('password')?.hasError('required')){
+                    <mat-error >Password is required</mat-error>
+                  }
+                  @if(registrationForm?.get('password')?.hasError('minlength')){
+                       <mat-error >Password must be at least 6 characters</mat-error>
+                  }
+                  
+               
+                </mat-form-field>
+
+                <div>
+                     <button style="padding: 1.5rem;" class="w-full py-5" mat-raised-button color="primary" type="submit">Register</button>
+                </div>
+              
+               
+              </form>
+           
+            <div class="flex items-center gap-2 mt-9 justify-center">
+              have account ? <button (click)="togglePanel()" mat-button color="primary">signin</button>
+            </div>
+            
+          </div>
+       
+        <div class="signup-form">
+          <h1 class="text-lg font-bold text-center pb-8">Login</h1>
+          <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" class="example-form">
+         
+          
+            <mat-form-field class="w-full">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Enter your email">
+              @if(registrationForm?.get('email')?.hasError('required')){
+                <mat-error>Email is required</mat-error>
+              }
+              @if(registrationForm?.get("email")?.hasError('email')){
+                <mat-error>Please enter a valid email address</mat-error>
+              }
+              
+            </mat-form-field>
+          
+            <mat-form-field class="w-full">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" placeholder="Enter your password">
+              @if(registrationForm?.get('password')?.hasError('required')){
+                <mat-error >Password is required</mat-error>
+              }
+              
+           
+            </mat-form-field>
+
+            <div>
+                 <button style="padding: 1.5rem;" class="w-full py-5" mat-raised-button color="primary" type="submit">Login</button>
+            </div>
+          
+           
+          </form>
+          <div class="mt-5 flex items-center gap-2 py-5 justify-center">
+            Already have an account? <button (click)="togglePanel()" mat-button color="primary">signin</button>
+          </div>
+          <div>
+            <button (click)="togglePanel()" mat-button color="primary"></button>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>
